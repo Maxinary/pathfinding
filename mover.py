@@ -2,7 +2,28 @@ import numpy as np
 from random import shuffle, random
 from pygame import Color, draw
 
-class Person:
+class Body:
+    def __init__(self, start_position, color=[None], shape):
+        self.pos = np.array(start_position, dtype = np.float64)
+        self.color = color
+
+    def draw(surface):
+        raise "Unimplemented draw method call"
+
+    
+class KinematicBody(Body):
+
+class Mover(KinematicBody):
+    def __init__(self, start_position, color=[None]):
+        self.pos = np.array(start_position, dtype = np.float64)
+        self.color = color
+        self.velocity = np.zeros(2)
+        
+
+    def draw(surface):
+        raise "Unimplemented draw method call"
+
+class Person(Mover):
     def __init__(self, start, end, color=[None]):
         if None in color:
             color = [random()*255, random()*255, random()*255]

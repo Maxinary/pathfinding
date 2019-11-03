@@ -1,17 +1,20 @@
 import numpy
 from pygame import draw
+from random import random
 from math_fns import translate, scale
 
 class Shape:
-    def __init__(self, species = None):
+    def __init__(self, species = None, color = [None]):
         self.species = species
+        if None in color:
+            color = [random()*255, random()*255, random()*255]
 
     def draw(self, surface):
         raise Exception("No drawing function implemented")
 
 class Circle(Shape):
-    def __init__(self, center, radius):
-        super().__init__(self, "Circle")
+    def __init__(self, center, radius, color = [None]):
+        super().__init__(self, "Circle", color)
         self.pos = np.array(center, dtype = np.float64)
         self.radius = radius
 
@@ -19,8 +22,8 @@ class Circle(Shape):
         draw.circle(surface, self.color, self.pos, self.radius)
 
 class Rectangle(Shape):
-    def __init__(self, c1, c2):
-        super().__init__(self, "Rectangle")
+    def __init__(self, c1, c2, color = [None]):
+        super().__init__(self, "Rectangle", color)
         self.pos = np.array([(c1[0]+c2[0])/2,(c1[1]+c2[1])/2], dtype = np.float64)
         self.width = abs(c1[0]-c2[0])
         self.height = abs(c1[1]-c2[1])
