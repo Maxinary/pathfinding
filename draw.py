@@ -29,7 +29,7 @@ while 1:
     surface.fill((0,0,0))
     for person in people:
         person.step()
-        person.draw()
+        person.draw(surface)
 
     screen.blit(surface if main_surface else path_s, pygame.Rect((0,0), size))
     pygame.display.flip()
